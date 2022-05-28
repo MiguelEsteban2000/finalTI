@@ -1,0 +1,24 @@
+server:
+    port: 4040
+spring:
+    cloud:
+        gateway:
+            globalcors:
+              cors-configurations:
+                '[/**]':
+                  allowedHeaders: "*"
+                  allowedOrigins: "*"
+                  allowedMethods:
+                    - GET
+                    - POST
+                    - PUT
+                    - DELETE
+            routes: 
+            - id: gate
+              uri: http://localhost:9898/
+              predicates: 
+              - Path=/libros/**  
+            - id: gati
+              uri: http://localhost:8080/
+              predicates: 
+              - Path=/autores/**
